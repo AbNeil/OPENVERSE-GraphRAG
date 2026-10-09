@@ -1,0 +1,24 @@
+# Secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# Graph-RAG generated files
+ragtest/cache/
+ragtest/input/
+ragtest/output/
+output/
+*.parquet
+*.zip
+
+# System files
+.DS_Store
