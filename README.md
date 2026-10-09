@@ -1,4 +1,4 @@
-# OPENVERSE Graph-RAG: Governance Intelligence for European Virtual Worlds
+# OPENVERSE Graph-RAG: Governance Framework for European Virtual Worlds
 
 > **Research prototype · release candidate · not a hosted public service**
 >
