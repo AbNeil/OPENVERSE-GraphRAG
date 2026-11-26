@@ -157,10 +157,6 @@ The `monkey_patch.py` module modifies private/internal GraphRAG implementation m
 
 These adaptations are **version-sensitive** and should be treated as experimental. They do not establish compatibility with the current upstream GraphRAG release.
 
-## Independent demonstration handover
-
-For Lukasz and authorised project partners, see the [step-by-step demonstration guide](docs/LUKASZ_DEMO_GUIDE.md), prepared by **abdul (neeil)**. The guide includes the historical environment, setup scripts, preflight checks, secure remote access, [example questions](docs/DEMO_QUESTIONS.md) and [troubleshooting](docs/TROUBLESHOOTING.md). The original index must be transferred separately with appropriate approval. The handover has not yet been validated on an independent machine.
-
 ## Interactive demonstration
 
 The [Streamlit application](app/streamlit_app.py) reconstructs the October 2026 interface against the existing query CLI. It is not the recovered original source and has not been validated end-to-end in this release.
