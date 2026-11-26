@@ -89,11 +89,11 @@ I generated the following two files:
 
 I tested the ZIP using `unzip -t`, which reported no errors in the compressed data. I generated the checksum file; the recipient-side checksum verification and a fresh end-to-end query test are still required.
 
-I will share these two files separately through an authorised project channel. They are not included in this public GitHub repository. The artifacts may contain source text and derived research data, so please keep them in approved private storage and do not commit or redistribute them publicly.
+I will share these two files separately with you. They are not included in this public GitHub repository. The artifacts may contain source text and derived research data, so please keep them in private storage and do not commit them publicly.
 
 ### 5.2 Receive and verify the files on your server
 
-Please download both files from the private transfer channel. I suggest keeping the received archive outside the cloned Git repository, in a private directory such as `$HOME/openverse-transfer`. If you download them to your laptop first, you can use your institution's approved file transfer method to place them on your server.
+Please download both files. I suggest keeping the received archive outside the cloned Git repository, in a private directory such as `$HOME/openverse-transfer`. If you download them to your laptop first, you can later transfer them to your server.
 
 On the Linux server:
 
