@@ -1,6 +1,6 @@
 # OPENVERSE Graph-RAG
 
-## An original research framework for knowledge-grounded governance intelligence in European virtual worlds
+## Framework for knowledge-grounded governance intelligence in European virtual worlds
 
 **Horizon Europe OPENVERSE | University of Galway | Insight Centre for Data Analytics**
 
