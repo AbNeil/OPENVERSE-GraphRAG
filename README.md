@@ -60,6 +60,7 @@ flowchart TD
 | `monkey_patch.py` | Overrides selected Microsoft GraphRAG methods to use Ollama embeddings and adapt global-search processing. |
 | `ragtest/settings.yaml` | Research configuration for models, input, indexing, storage, prompts and search. |
 | `ragtest/prompts/` | Custom prompts for entity extraction, claims, description summarisation and community reports. |
+| `app/streamlit_app.py` | Reconstructed interactive query interface. |
 | `Visualize.ipynb` | Experimental notebook for exploring indexed graph data. Requires generated artifacts and additional dependencies. |
 | `requirements.txt` | Original environment snapshot, including a specific Microsoft GraphRAG Git commit. |
 
@@ -155,6 +156,19 @@ The `monkey_patch.py` module modifies private/internal GraphRAG implementation m
 - Replaces part of the global-search map response handling.
 
 These adaptations are **version-sensitive** and should be treated as experimental. They do not establish compatibility with the current upstream GraphRAG release.
+
+## Interactive demonstration
+
+The [Streamlit application](app/streamlit_app.py) reconstructs the October 2026 interface against the existing query CLI. It is not the recovered original source and has not been validated end-to-end in this release.
+
+From the repository root, activate the compatible GraphRAG environment and run:
+
+```bash
+python -m pip install streamlit
+python -m streamlit run app/streamlit_app.py
+```
+
+Select an authorised existing artifact directory and local or global search. Ensure Ollama is running. The interface reports actual CLI output, elapsed time and errors. Genuine demonstration screenshots will require execution with the original or an authorised replacement index.
 
 ## Visualisation notebook
 
