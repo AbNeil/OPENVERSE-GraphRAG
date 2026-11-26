@@ -1,18 +1,15 @@
 # OPENVERSE Graph-RAG — demonstration handover
 
-**Author: abdul (neeil)**  
-**Prepared for: Lukasz**  
+**Author: Abdul**    
 **Date: 26 November 2026**
 
-Hi Lukasz,
-
-Here is how I suggest you set up the system for next week's demonstration. I have designed this handover so you can run the application independently of my machine. You will need the GitHub source code, a compatible Python environment, Ollama and the precomputed research graph that I will need to arrange to transfer separately through an authorised channel.
+Here is how I suggest you set up the system for next week's demonstration. You will need the GitHub source code, a compatible Python environment, Ollama and the precomputed knowledge graph that I will need to arrange to transfer separately through an authorised channel.
 
 ## 1. Choose your machine
 
-You can use a Linux server, a GPU workstation or a Mac. A GPU is preferable for faster generation, but CPU inference is possible. I suggest 16 GB RAM as a starting point and 32 GB if available, with at least 25 GB free disk space. These are indicative, not measured requirements. If you use Windows, I suggest WSL2 with Ubuntu and a compatible Ollama setup. The commands below are for bash on Linux or macOS.
+You can use a Linux server, a GPU workstation or a Mac whatever you like. I suggest 16 GB RAM as a starting point and 32 GB if available, with at least 25 GB of free disk space. These are indicative, not measured requirements. If you use Windows, I suggest WSL2 with Ubuntu and a compatible Ollama setup. The commands below are for bash on Linux or macOS.
 
-In October I used a Conda environment named `openverse-demo`, Python 3.10.22 on Apple Silicon, GraphRAG 0.3.2, LanceDB 0.11.0 and NumPy 1.26.4. That historical environment worked for local queries; I have not yet verified the new handover scripts on your machine.
+In October, I used a Conda environment named `openverse-demo`, Python 3.10.22 on Apple Silicon, GraphRAG 0.3.2, LanceDB 0.11.0 and NumPy 1.26.4. That historical environment worked for local queries.
 
 ## 2. Download the code
 
@@ -61,7 +58,7 @@ Llama 3.1 generates answers; Nomic generates the query embeddings. Please do not
 
 This is the important part: the source repository does not contain the original corpus or the generated index. I need to arrange access to the complete authorised artifact directory before you can reproduce the demonstration. You do not need to run indexing again.
 
-The historical directory was `ragtest/output/20241018-095127/artifacts`. After receiving the archive, inspect it before extraction and copy the complete artifacts directory into that location (or use its actual path).
+The directory was `ragtest/output/20241018-095127/artifacts`. After receiving the archive, inspect it before extraction and copy the complete artefacts directory into that location (or use its actual path).
 
 ```bash
 mkdir -p ragtest/output/20241018-095127
