@@ -40,7 +40,7 @@ flowchart TD
 2. **Chunk:** the supplied configuration sets a chunk size of 300 and overlap of 100.
 3. **Extract:** customised prompts guide entity and relationship extraction; the current configuration lists `organization`, `person`, `geo` and `event` as entity types.
 4. **Organise:** Microsoft GraphRAG builds and clusters the extracted graph and prepares community reports.
-5. **Index:** generated artifacts are written to timestamped output directories.
+5. **Index:** Generated artefacts are written to timestamped output directories.
 6. **Query:** `query.py` exposes local and global search modes, with custom embedding and global-search patches.
 
 ## Repository contents
@@ -55,7 +55,7 @@ flowchart TD
 | `Visualize.ipynb` | Experimental notebook for exploring indexed graph data. Requires generated artifacts and additional dependencies. |
 | `requirements.txt` | Original environment snapshot, including a specific Microsoft GraphRAG Git commit. |
 
-The repository intentionally excludes the source corpus, `.env` files, caches, `.parquet` artifacts, model weights and generated output. These exclusions limit the ability to reproduce original experimental outputs without the relevant inputs.
+The repository intentionally excludes the source corpus, `.env` files, caches, `.parquet` artifacts, model weights and generated output. These exclusions limit reproduction of the original experimental outputs without the relevant inputs.
 
 ## Requirements
 
@@ -64,9 +64,9 @@ The repository intentionally excludes the source corpus, `.env` files, caches, `
 - Sufficient RAM, disk space and processing capacity for indexing; requirements depend on corpus size and models.
 - Internet access during initial package and model installation.
 
-**Compatibility warning:** `requirements.txt` is a historical, fully pinned environment snapshot and installs Microsoft GraphRAG from commit `75735bd1036b00abfe17a951383392049cb72947`. The monkey patches depend on internal GraphRAG APIs and may fail with newer versions. Python-version and platform compatibility have **not** been verified for this release.
+**Compatibility warning:** `requirements.txt` is a historical, fully pinned environment snapshot and installs Microsoft GraphRAG from commit `75735bd1036b00abfe17a951383392049cb72947`. The monkey patches depend on internal GraphRAG APIs and may fail with newer versions. We have **not** verified Python-version and platform compatibility for this release.
 
-## Installation (provisional)
+## Installation 
 
 ```bash
 # Clone once you have access to the repository
