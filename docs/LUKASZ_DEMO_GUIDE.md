@@ -193,7 +193,7 @@ Then open http://localhost:8501 on your laptop. Replace the placeholders with th
 
 ## 8. The actual demonstration
 
-Start with the biometric authentication question. Explain that the system retrieves graph-linked evidence before generating a response. Then use the questions in [DEMO_QUESTIONS.md](DEMO_QUESTIONS.md). The audience should understand that this is an OPENVERSE governance research framework that builds upon Microsoft GraphRAG, not a legal-advice service. Please distinguish retrieved references from independently validated citations.
+Just explain that the system retrieves graph-linked evidence before generating a response. Then use the questions in [DEMO_QUESTIONS.md](DEMO_QUESTIONS.md). 
 
 I recommend local search for the live session. Global search was substantially slower during our October tests; only show it if you have rehearsed it successfully. If the application is slow, do not present cached or illustrative output as a live result.
 
@@ -201,8 +201,7 @@ I recommend local search for the live session. Global search was substantially s
 
 Please run at least two local queries, confirm the browser interface works and capture genuine screenshots of a successful response. Note the model versions, machine configuration, repository commit and approximate query latency. If you encounter problems, see [TROUBLESHOOTING.md](TROUBLESHOOTING.md).
 
-I have now prepared the original graph archive and its checksum. Once you receive them privately, please follow Step 5 and complete the preflight, local query test and Streamlit rehearsal. This repository does not itself include the index or a hosted service.
+I have now prepared the original graph archive and its checksum. I will send them to you via email. Please follow Step 5 and complete the preflight, local query test and Streamlit rehearsal. This repository does not itself include the index or a hosted service.
 
-Best,  
-Abdul (Neeil) 
+All the best!  
 
