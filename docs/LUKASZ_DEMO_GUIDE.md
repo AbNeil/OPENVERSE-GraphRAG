@@ -3,13 +3,13 @@
 **Author: Abdul**    
 **Date: 26 November 2026**
 
-Here is how I suggest you set up the system for next week's demonstration. You will need the GitHub source code, a compatible Python environment, Ollama and the precomputed knowledge graph that I will need to arrange to transfer separately through an authorised channel.
+Here is how I suggest you set up the system for next week's demonstration. You will need the GitHub source code, a compatible Python environment, Ollama and the original precomputed knowledge graph that I have now recovered and packaged for separate transfer through an authorised channel. See Step 5 for the archive, checksum and import instructions.
 
 ## 1. Choose your machine
 
 You can use a Linux server, a GPU workstation or a Mac whatever you like. I suggest 16 GB RAM as a starting point and 32 GB if available, with at least 25 GB of free disk space. These are indicative, not measured requirements. If you use Windows, I suggest WSL2 with Ubuntu and a compatible Ollama setup. The commands below are for bash on Linux or macOS.
 
-In October, I used a Conda environment named `openverse-demo`, Python 3.10.22 on Apple Silicon, GraphRAG 0.3.2, LanceDB 0.11.0 and NumPy 1.26.4. That historical environment worked for local queries.
+The historical demonstration used a Conda environment named `openverse-demo`, GraphRAG 0.3.2, LanceDB 0.11.0 and NumPy 1.26.4. When recovering the graph on my Mac on 26 November 2026, I confirmed that the currently installed environment reports Python 3.10.15 (Conda-forge). The historical environment worked for local queries; we still need to verify the installed package versions and reproduce a successful query on your server.
 
 ## 2. Download the code
 
@@ -56,18 +56,108 @@ Llama 3.1 generates answers; Nomic generates the query embeddings. Please do not
 
 ## 5. Import the precomputed research graph
 
-This is the important part: the source repository does not contain the original corpus or the generated index. I need to arrange access to the complete authorised artifact directory before you can reproduce the demonstration. You do not need to run indexing again.
+Lukasz, I have now recovered the original OPENVERSE knowledge graph, so you will not need to run the indexing pipeline again.
 
-The directory was `ragtest/output/20241018-095127/artifacts`. After receiving the archive, inspect it before extraction and copy the complete artefacts directory into that location (or use its actual path).
+### 5.1 What I recovered and prepared
+
+I located the original October 2024 indexing output in my local research project, under `ragtest/output/20241018-095127/artifacts/`. I inspected the directory, confirmed that the final and intermediate Parquet datasets were present, and recovered the complete LanceDB entity-description embedding store, including its manifests, transactions and data files.
+
+I also inspected the original `stats.json` and read the Parquet metadata using PyArrow to establish the following statistics directly from the recovered files.
+
+| Metric | Recovered value |
+|---|---:|
+| Indexed document records | 1 |
+| Entity records | 24,782 |
+| Relationship records | 23,754 |
+| Graph node records | 123,910 |
+| Communities | 3,054 |
+| Community reports | 3,054 |
+| Text units | 3,688 |
+| Artifact directory size | Approximately 524 MiB (as reported by du -sh) |
+| Original indexing runtime | 87,269.53 seconds (approximately 24 h 14 min) |
+
+The single indexed document record should not be interpreted as the number of original source publications. The source corpus may have been consolidated before indexing, but I have not verified its original composition here. The node-record count is not a count of unique entities. These statistics describe the original indexed snapshot, not a measurement of retrieval quality.
+
+Entity extraction and community report generation accounted for approximately 91.6% of the historical indexing runtime. By transferring the existing artifacts, we can avoid repeating these expensive steps. The time saved on your server will depend on its hardware and configuration.
+
+I generated the following two files:
+
+| File | What it contains |
+|---|---|
+| `OPENVERSE_Precomputed_KG.zip` | The complete artifacts directory, including all 14 Parquet files, stats.json and the LanceDB vector store. |
+| `OPENVERSE_Precomputed_KG.sha256` | SHA-256 checksum of the ZIP archive for transfer verification. |
+
+I tested the ZIP using `unzip -t`, which reported no errors in the compressed data. I generated the checksum file; the recipient-side checksum verification and a fresh end-to-end query test are still required.
+
+I will share these two files separately through an authorised project channel. They are not included in this public GitHub repository. The artifacts may contain source text and derived research data, so please keep them in approved private storage and do not commit or redistribute them publicly.
+
+### 5.2 Receive and verify the files on your server
+
+Please download both files from the private transfer channel. I suggest keeping the received archive outside the cloned Git repository, in a private directory such as `$HOME/openverse-transfer`. If you download them to your laptop first, you can use your institution's approved file transfer method to place them on your server.
+
+On the Linux server:
+
+```bash
+mkdir -p "$HOME/openverse-transfer"
+chmod 700 "$HOME/openverse-transfer"
+# Place both files in this directory before continuing.
+cd "$HOME/openverse-transfer"
+ls -lh OPENVERSE_Precomputed_KG.zip OPENVERSE_Precomputed_KG.sha256
+sha256sum -c OPENVERSE_Precomputed_KG.sha256
+unzip -t OPENVERSE_Precomputed_KG.zip
+```
+
+On macOS, use `shasum -a 256 -c OPENVERSE_Precomputed_KG.sha256` instead of `sha256sum`.
+
+You should see `OPENVERSE_Precomputed_KG.zip: OK` from the checksum command and a successful ZIP test. If either check fails, please stop and ask me for a fresh copy rather than extracting a potentially corrupted archive.
+
+### 5.3 Extract the original index into the cloned project
+
+Return to the root of the repository you cloned in Step 2. If you cloned it under your home directory, for example:
+
+```bash
+cd "$HOME/OPENVERSE-GraphRAG"
+```
+
+Adjust this path if you cloned it elsewhere. Then run:
 
 ```bash
 mkdir -p ragtest/output/20241018-095127
-# Copy the supplied complete artifacts directory here.
+
+unzip -n "$HOME/openverse-transfer/OPENVERSE_Precomputed_KG.zip" \
+  -d ragtest/output/20241018-095127
+
 export DEMO_ARTIFACTS="$PWD/ragtest/output/20241018-095127/artifacts"
 ls -lah "$DEMO_ARTIFACTS"
+du -sh "$DEMO_ARTIFACTS"
 ```
 
-Please retain all Parquet files and any vector-store subdirectories, not just the entity and relationship files. Do not commit the archive, research text or derived graph to GitHub. If the transferred index has a different timestamp, update DEMO_ARTIFACTS accordingly. Transfer is subject to the project's data and distribution rights.
+Please use a clean destination for the first extraction. The `-n` option prevents overwriting existing files; if you already have a partial or different index there, use a fresh destination rather than mixing versions.
+
+The ZIP already contains the top-level `artifacts/` directory, so do not extract it into another directory named `artifacts/`. After extraction, the relevant structure should be:
+
+```text
+OPENVERSE-GraphRAG/
+└── ragtest/
+    └── output/
+        └── 20241018-095127/
+            └── artifacts/
+                ├── create_final_documents.parquet
+                ├── create_final_entities.parquet
+                ├── create_final_relationships.parquet
+                ├── create_final_nodes.parquet
+                ├── create_final_communities.parquet
+                ├── create_final_community_reports.parquet
+                ├── create_final_text_units.parquet
+                ├── stats.json
+                ├── lancedb/
+                │   └── entity_description_embeddings.lance/
+                └── ... (remaining intermediate Parquet files)
+```
+
+Please retain the entire directory, particularly the complete LanceDB store. Do not run `index.py`: the purpose of this archive is to reuse the original graph. Please also avoid committing the extracted output or archive to GitHub.
+
+Once this is done, activate the environment and follow Step 6 to run the preflight and an actual local-search query. The presence of the artifacts and the archive integrity checks do not guarantee successful inference; we still need to validate the models, dependencies and graph together on your server.
 
 ## 6. Check the environment
 
@@ -111,5 +201,8 @@ I recommend local search for the live session. Global search was substantially s
 
 Please run at least two local queries, confirm the browser interface works and capture genuine screenshots of a successful response. Note the model versions, machine configuration, repository commit and approximate query latency. If you encounter problems, see [TROUBLESHOOTING.md](TROUBLESHOOTING.md).
 
-I will need to arrange the graph artifact transfer; this repo does not itself include the index or a hosted service. I will update it if I am able to arrange it. 
+I have now prepared the original graph archive and its checksum. Once you receive them privately, please follow Step 5 and complete the preflight, local query test and Streamlit rehearsal. This repository does not itself include the index or a hosted service.
+
+Best,  
+Abdul (Neeil) 
 
