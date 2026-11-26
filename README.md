@@ -33,7 +33,6 @@ flowchart TD
     L -. embeddings .-> H
 ```
 
-*Conceptual workflow based on the supplied source files and GraphRAG configuration. It is not a validated deployment diagram.*
 
 ### Pipeline at a glance
 
