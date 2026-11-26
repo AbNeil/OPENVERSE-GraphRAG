@@ -7,9 +7,9 @@ Here is how I suggest you set up the system for next week's demonstration. You w
 
 ## 1. Choose your machine
 
-You can use a Linux server, a GPU workstation or a Mac whatever you like. I suggest 16 GB RAM as a starting point and 32 GB if available, with at least 25 GB of free disk space. These are indicative, not measured requirements. If you use Windows, I suggest WSL2 with Ubuntu and a compatible Ollama setup. The commands below are for bash on Linux or macOS.
+You can use a Linux server, or a Mac, whatever you like. I suggest 16 GB RAM as a starting point and 32 GB if available, with at least 25 GB of free disk space. These are indicative, not measured requirements. If you use Windows, I suggest WSL2 with Ubuntu and a compatible Ollama setup. The commands below are for bash on Linux or macOS.
 
-The historical demonstration used a Conda environment named `openverse-demo`, GraphRAG 0.3.2, LanceDB 0.11.0 and NumPy 1.26.4. When recovering the graph on my Mac on 26 November 2026, I confirmed that the currently installed environment reports Python 3.10.15 (Conda-forge). The historical environment worked for local queries; we still need to verify the installed package versions and reproduce a successful query on your server.
+The demonstration used a Conda environment named `openverse-demo`, GraphRAG 0.3.2, LanceDB 0.11.0 and NumPy 1.26.4. When recovering the graph on my Mac, I confirmed that the currently installed environment reports Python 3.10.15 (Conda-forge). The historical environment worked for local queries; you still need to verify the installed package versions and reproduce a successful query on your server.
 
 ## 2. Download the code
 
@@ -32,7 +32,7 @@ bash scripts/setup_demo.sh
 conda activate openverse-demo
 ```
 
-The script uses Python 3.10, installs the pinned historical requirements and Streamlit, and uses Conda for LanceDB if pip cannot complete the installation. It does not install Ollama or download research data. If a step fails, send me the complete error and your operating system/architecture rather than upgrading GraphRAG or LanceDB indiscriminately. The project uses internal GraphRAG APIs that are version sensitive.
+The script uses Python 3.10, installs the pinned historical requirements and Streamlit, and uses Conda for LanceDB if pip cannot complete the installation. It does not install Ollama or download research data. If a step fails, send me the complete error and your operating system/architecture rather than upgrading GraphRAG or LanceDB. The project uses internal GraphRAG APIs that are version-sensitive.
 
 ## 4. Install and start Ollama
 
@@ -54,13 +54,13 @@ ollama list
 
 Llama 3.1 generates answers; Nomic generates the query embeddings. Please do not change the embedding model without checking compatibility with the existing index. The repository expects a local Ollama chat endpoint at http://localhost:11434/v1 and uses the local Ollama Python client for embeddings. If the original model tags/digests are available, I will compare them with yours.
 
-## 5. Import the precomputed research graph
+## 5. Import the precomputed knowledge graph
 
-Lukasz, I have now recovered the original OPENVERSE knowledge graph, so you will not need to run the indexing pipeline again.
+Lukasz, I have forwarded you the original OPENVERSE knowledge graph, so you don't need to run the indexing pipeline again.
 
-### 5.1 What I recovered and prepared
+### 5.1 What I sent you ()
 
-I located the original October 2024 indexing output in my local research project, under `ragtest/output/20241018-095127/artifacts/`. I inspected the directory, confirmed that the final and intermediate Parquet datasets were present, and recovered the complete LanceDB entity-description embedding store, including its manifests, transactions and data files.
+I have forwarded you the original October 2024 indexing output, under `ragtest/output/20241018-095127/artifacts/`. I inspected the directory, confirmed that the final and intermediate Parquet datasets are present, and recovered the complete LanceDB entity-description embedding store, including its manifests, transactions and data files.
 
 I also inspected the original `stats.json` and read the Parquet metadata using PyArrow to establish the following statistics directly from the recovered files.
 
@@ -76,7 +76,7 @@ I also inspected the original `stats.json` and read the Parquet metadata using P
 | Artifact directory size | Approximately 524 MiB (as reported by du -sh) |
 | Original indexing runtime | 87,269.53 seconds (approximately 24 h 14 min) |
 
-The single indexed document record should not be interpreted as the number of original source publications. The source corpus may have been consolidated before indexing, but I have not verified its original composition here. The node-record count is not a count of unique entities. These statistics describe the original indexed snapshot, not a measurement of retrieval quality.
+The single indexed document record should not be interpreted as the number of source publications. The source corpus may have been consolidated before indexing, but I have not verified its original composition here. The node-record count is not a count of unique entities. These statistics describe the original indexed snapshot, not a measurement of retrieval quality.
 
 Entity extraction and community report generation accounted for approximately 91.6% of the historical indexing runtime. By transferring the existing artifacts, we can avoid repeating these expensive steps. The time saved on your server will depend on its hardware and configuration.
 
@@ -89,7 +89,7 @@ I generated the following two files:
 
 I tested the ZIP using `unzip -t`, which reported no errors in the compressed data. I generated the checksum file; the recipient-side checksum verification and a fresh end-to-end query test are still required.
 
-I will share these two files separately with you. They are not included in this public GitHub repository. The artifacts may contain source text and derived research data, so please keep them in private storage and do not commit them publicly.
+I have shared these two files with you already. They are not included in this public GitHub repository. The artifacts may contain source text and derived research data, so please keep them in private storage and do not commit them publicly.
 
 ### 5.2 Receive and verify the files on your server
 
@@ -157,7 +157,7 @@ OPENVERSE-GraphRAG/
 
 Please retain the entire directory, particularly the complete LanceDB store. Do not run `index.py`: the purpose of this archive is to reuse the original graph. Please also avoid committing the extracted output or archive to GitHub.
 
-Once this is done, activate the environment and follow Step 6 to run the preflight and an actual local-search query. The presence of the artifacts and the archive integrity checks do not guarantee successful inference; we still need to validate the models, dependencies and graph together on your server.
+Once this is done, activate the environment and follow Step 6 to run the preflight and an actual local-search query. The presence of the artifacts and the archive integrity checks do not guarantee successful inference; you still need to validate the models, dependencies and graph together on your server.
 
 ## 6. Check the environment
 
@@ -181,7 +181,7 @@ If the query succeeds, we have evidence that the graph and model pipeline work o
 bash scripts/run_demo.sh
 ```
 
-Open http://localhost:8501 in your browser. Select the artifact directory, choose **local** search, leave community level at 2 initially, and press Run query. The interface displays actual CLI output and elapsed time. It is a reconstructed version of our October interface, not a recovered copy of the original source.
+Open http://localhost:8501 in your browser. Select the artifact directory, choose **local** search, leave community level at 2 initially, and press Run query. The interface displays actual CLI output and elapsed time. It is a reconstructed version of our October interface, not a recovered copy of the source.
 
 For a remote Linux server, I suggest keeping Streamlit private and using SSH port forwarding. From your own laptop, run:
 
