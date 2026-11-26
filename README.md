@@ -1,16 +1,24 @@
-# OPENVERSE Graph-RAG: Governance Framework for European Virtual Worlds
+# OPENVERSE Graph-RAG
 
-> **Research prototype · release candidate · not a hosted public service**
->
-> Public distribution and the final software licence require approval from the relevant OPENVERSE project and institutional rights holders. This repository contains implementation scripts and configuration, **not** the original document corpus or precomputed graph artifacts.
+## An original research framework for knowledge-grounded governance intelligence in European virtual worlds
 
-## Overview
+**Horizon Europe OPENVERSE | University of Galway | Insight Centre for Data Analytics**
 
-OPENVERSE Graph-RAG is a research prototype exploring graph-based retrieval-augmented generation for questions about ethical, legal, intellectual-property and governance issues in European virtual worlds. Its intended users include researchers, virtual-world developers, SMEs and governance stakeholders.
+OPENVERSE Graph-RAG was developed within the OPENVERSE research programme to investigate ethical, legal, regulatory and intellectual property governance in immersive digital environments. It connects heterogeneous governance evidence through semantic knowledge graphs and retrieval-augmented language models, supporting entity-specific questions and corpus-wide thematic analysis.
 
-The uploaded implementation adapts **Microsoft GraphRAG** rather than implementing a graph-retrieval engine entirely from scratch. It provides entry-point scripts for indexing and querying, a set of customised extraction and community-report prompts, configuration for locally served language models, and monkey patches that adapt embedding and global-search behaviour.
+### Research context and contributions
 
-The broader OPENVERSE research framework describes governance-oriented reasoning over curated documents. **This code snapshot does not independently establish the full corpus composition, quantitative evaluation results, deployment status or completeness of the research framework.**
+The framework contributes to WP3, particularly T3.4 (ethical and legal requirements) and T3.5 (IPR and governance models). The project methodology addresses transparency, accountability, privacy and data sovereignty, wellbeing and accessibility, and economic fairness. The research corpus described in deliverable D6.2 contains more than 100 curated policy, standards and socio-legal documents. This repository does not include that corpus or its derived index.
+
+The original research contribution is the domain-specific framework and its application to governance intelligence: corpus curation, document processing, semantic entity and relationship representation, thematic community analysis, customised extraction and summarisation prompts, local inference integration and exploratory interactive querying. The software implementation builds upon and extends [Microsoft GraphRAG](https://github.com/microsoft/graphrag); its upstream indexing and retrieval algorithms are not claimed as independently authored. Ollama, Llama 3.1 and Nomic embeddings are third-party components.
+
+### Demonstration and exploitation
+
+D6.2 identifies the framework as Asset 05, a Key Exploitable Result developed at the University of Galway, and records its presentation at the OPENVERSE webinar on 16 June 2026. In October 2026, an interactive Streamlit demonstration connected to the existing research index and local Ollama inference successfully exercised local search, including questions about biometric authentication. Global search was also attempted but exhibited substantial latency. These are historical demonstration observations, not a reproducible benchmark or evidence of a currently hosted service.
+
+### Release scope
+
+This repository is a research software snapshot. The original corpus, generated graph artifacts and historical demonstration screenshots are not included. Public distribution and the final software licence remain subject to approval by the relevant project and institutional rights holders. No production-readiness, legal-advice or maintenance guarantee is implied.
 
 ## Architecture
 
