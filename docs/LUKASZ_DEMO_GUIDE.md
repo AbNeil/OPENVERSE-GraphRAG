@@ -1,4 +1,4 @@
-# OPENVERSE Graph-RAG — demonstration handover
+# OPENVERSE Graph-RAG: Demo 
 
 **Author: Abdul**    
 **Date: 26 November 2026**
