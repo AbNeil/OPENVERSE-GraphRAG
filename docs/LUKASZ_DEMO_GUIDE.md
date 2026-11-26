@@ -111,7 +111,5 @@ I recommend local search for the live session. Global search was substantially s
 
 Please run at least two local queries, confirm the browser interface works and capture genuine screenshots of a successful response. Note the model versions, machine configuration, repository commit and approximate query latency. If you encounter problems, see [TROUBLESHOOTING.md](TROUBLESHOOTING.md).
 
-I will need to arrange the graph artifact transfer; this guide does not itself include the index or a hosted service. We should complete a rehearsal on your machine before the demonstration.
+I will need to arrange the graph artifact transfer; this repo does not itself include the index or a hosted service. I will update it if I am able to arrange it. 
 
-Best,  
-Abdul (Neeil)
